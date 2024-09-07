@@ -18,25 +18,22 @@ git clone -b js --single-branch https://github.com/gngpp/luci-theme-design packa
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic package/amlogic
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ddns-go
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-watchcat
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ttyd
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-fileassistant
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-pushbot
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-linkease linkease ffmpeg-remux
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
-
-# 加入OpenClash核心
-#chmod -R a+x $GITHUB_WORKSPACE/preset-clash-core.sh
-#$GITHUB_WORKSPACE/N1/preset-clash-core.sh
 
 echo "
 # 插件
 #CONFIG_PACKAGE_luci-theme-design=y
 CONFIG_PACKAGE_luci-app-ddns-go=y
+CONFIG_PACKAGE_luci-app-watchcat=y
+CONFIG_PACKAGE_luci-app-ttyd=y
+CONFIG_PACKAGE_luci-app-fileassistant=y
 CONFIG_PACKAGE_luci-app-pushbot=y
-CONFIG_PACKAGE_luci-app-linkease=y
 CONFIG_PACKAGE_luci-app-turboacc=y
 " >> .config
-
-# 修改默认IP
-sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 修改默认主题
 sed -i 's/luci-theme-design/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
